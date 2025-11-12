@@ -21,6 +21,8 @@ public class TaskInputEntity {
     @Column(columnDefinition = "TEXT")
     private String text;
 
+    private Long subjectId;
+
     @Column(columnDefinition = "jsonb")
     private String correctAnswers;
 

@@ -18,6 +18,8 @@ public class TaskManualEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tasks_manual_seq")
     private Long id;
 
+    private Long subjectId;
+
     @Column(columnDefinition = "TEXT")
     private String text;
 

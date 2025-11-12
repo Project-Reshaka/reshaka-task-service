@@ -21,6 +21,8 @@ public class TaskChoiceEntity {
     @Column(columnDefinition = "TEXT")
     private String text;
 
+    private Long subjectId;
+
     private String type; // 'single' | 'multiple'
 
     @Column(columnDefinition = "jsonb")
