@@ -12,8 +12,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class VariantTask {
-    private UUID variantId;
-    private UUID taskId;
+    private Long variantId;
+    private Long taskId;
     private TaskBaseType taskType;
     private Integer order;
     private Boolean isCorrect;

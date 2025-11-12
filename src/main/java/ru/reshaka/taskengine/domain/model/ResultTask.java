@@ -12,9 +12,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ResultTask {
-    private UUID id;
-    private UUID userId;
-    private UUID taskId;
+    private Long id;
+    private Long userId;
+    private Long taskId;
     private TaskBaseType taskType;
     private Object selectedAnswer;
     private Boolean isCorrect;

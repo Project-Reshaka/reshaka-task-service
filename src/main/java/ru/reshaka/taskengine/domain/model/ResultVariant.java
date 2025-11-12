@@ -13,9 +13,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ResultVariant {
-    private UUID id;
-    private UUID userId;
-    private UUID variantId;
+    private Long id;
+    private Long userId;
+    private Long variantId;
     private Instant endTime;
     private Instant startTime;
     private int totalQuestions;

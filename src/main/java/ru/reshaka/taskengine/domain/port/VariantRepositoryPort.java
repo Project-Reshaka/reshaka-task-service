@@ -7,8 +7,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface VariantRepositoryPort {
-    Optional<Variant> findById(UUID variantId);
-    List<Variant> findBySubject(UUID subjectId);
+    Optional<Variant> findById(Long variantId);
+    List<Variant> findBySubject(Long subjectId);
     Variant save(Variant variant);
-    void delete(UUID variantId);
+    void delete(Long variantId);
 }

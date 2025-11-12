@@ -13,5 +13,5 @@ public abstract class VariantGenerationService {
         this.taskRepository = taskRepository;
     }
 
-    public abstract Variant generate(UUID subjectId, int numberOfTasks);
+    public abstract Variant generate(Long subjectId, int numberOfTasks);
 }

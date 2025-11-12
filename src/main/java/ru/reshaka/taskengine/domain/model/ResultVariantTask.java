@@ -12,10 +12,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ResultVariantTask {
-    private UUID id;
-    private UUID userId;
-    private UUID resultVariantId;
-    private UUID taskId;
+    private Long id;
+    private Long userId;
+    private Long resultVariantId;
+    private Long taskId;
     private TaskBaseType taskType;
     private Object selectedAnswer;
     private Boolean isCorrect;

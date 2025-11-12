@@ -16,7 +16,7 @@ public class SingleTaskValidationService {
     private final ResultRepositoryPort resultRepo;
     private final TaskRepositoryPort taskRepo;
 
-    public ResultTask validateAndPersist(TaskBase task, Object answer, UUID userId) {
+    public ResultTask validateAndPersist(TaskBase task, Object answer, Long userId) {
 
         boolean isCorrect = task.validateAnswer(answer).getIsCorrect();
 
@@ -24,7 +24,7 @@ public class SingleTaskValidationService {
         ResultTask result = ResultTask.builder()
                 .taskId(task.getId())
                 .userId(userId)
-                .id(UUID.randomUUID())
+        //        .id(UUID.randomUUID())
                 .selectedAnswer(answer)
                 .isCorrect(isCorrect)
                 .build();
@@ -33,7 +33,7 @@ public class SingleTaskValidationService {
         return result;
     }
 
-    public ResultVariantTask validateAndPersistVariant(VariantTask task, Object answer, UUID userId) {
+    public ResultVariantTask validateAndPersistVariant(VariantTask task, Object answer, Long userId) {
         boolean isCorrect = taskRepo
                 .findById(task.getTaskId(), task.getTaskType())
                 .orElseThrow()
@@ -43,7 +43,7 @@ public class SingleTaskValidationService {
                 .taskId(task.getTaskId())
                 .resultVariantId(task.getVariantId())
                 .userId(userId)
-                .id(UUID.randomUUID())
+        //        .id(UUID.randomUUID())
                 .selectedAnswer(answer)
                 .isCorrect(isCorrect)
                 .taskType(task.getTaskType())

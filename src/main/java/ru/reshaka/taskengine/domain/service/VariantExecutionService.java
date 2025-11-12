@@ -20,15 +20,15 @@ public class VariantExecutionService {
     private final TimerPort timer;
     private final SingleTaskValidationService taskValidator;
 
-    private final Map<UUID, Long> times = new ConcurrentHashMap<>();
+    private final Map<Long, Long> times = new ConcurrentHashMap<>();
 
 
-    public void start(UUID variantId, UUID userId) {
+    public void start(Long variantId, Long userId) {
         timer.startTimer(variantId, userId);
         times.put(variantId, Instant.now().toEpochMilli());
     }
 
-    public void finish(UUID variantId, UUID userId, Map<UUID, Object> answers) {
+    public void finish(Long variantId, Long userId, Map<Long, Object> answers) {
         timer.stopTimer(variantId, userId);
         Instant end = Instant.now();
         Instant start = Instant.ofEpochMilli(times.get(variantId));
@@ -51,7 +51,7 @@ public class VariantExecutionService {
         resultRepo.saveResultVariant(resultVariant, taskResults);
     }
 
-    private List<ResultVariantTask> validateVariant(Variant variant, UUID userId, Map<UUID, Object> answers) {
+    private List<ResultVariantTask> validateVariant(Variant variant, Long userId, Map<Long, Object> answers) {
         return variant.getTasks().stream()
                 .map(task -> taskValidator.validateAndPersistVariant(task, answers.get(task.getTaskId()), userId))
                 .toList();

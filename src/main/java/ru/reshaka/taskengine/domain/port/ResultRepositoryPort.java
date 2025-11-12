@@ -11,6 +11,6 @@ public interface ResultRepositoryPort {
     void saveResultTask(ResultTask resultTask);
     void saveResultVariant(ResultVariant resultVariant, List<ResultVariantTask> taskResults);
     void saveResultVariantTask(ResultVariantTask resultVariantTask);
-    List<ResultTask> findTaskResultsByUser(UUID userId);
-    List<ResultVariant> findVariantResultsByUser(UUID userId);
+    List<ResultTask> findTaskResultsByUser(Long userId);
+    List<ResultVariant> findVariantResultsByUser(Long userId);
 }

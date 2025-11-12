@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public abstract class TaskBase {
-    private UUID id;
+    private Long id;
     private String text;
     private boolean isHard;
     private Instant createdAt;
