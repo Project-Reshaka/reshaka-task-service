@@ -13,7 +13,7 @@ public class TaskInput extends TaskBase {
     private List<String> correctAnswers;
 
     @Override
-    public ValidationResult validateAnswer(Object answer) {
+    public ValidationResult validateAnswer(Object answer, Long userId) {
         if (!(answer instanceof String ans)) {
             return new ValidationResult(false);
         }

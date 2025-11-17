@@ -6,12 +6,14 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-public class TaskManual extends TaskBase {
+public class TaskManual<T> extends TaskBase {
 
-    private final ManualTaskValidator validator;
+    private final ManualTaskValidator<T> validator;
 
     @Override
-    public ValidationResult validateAnswer(Object answer) {
-        return new ValidationResult(validator.isCorrectAnswer(answer, this));
+    public ValidationResult validateAnswer(Object answer, Long userId) {
+        boolean res = validator.isCorrectAnswer(userId, (T) answer, this);
+        return new ValidationResult(res);
     }
+
 }

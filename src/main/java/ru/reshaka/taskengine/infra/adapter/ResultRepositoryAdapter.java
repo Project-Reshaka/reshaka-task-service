@@ -31,7 +31,7 @@ public class ResultRepositoryAdapter implements ResultRepositoryPort {
     }
 
     @Override
-    public void saveResultVariant(ResultVariant resultVariant, List<ResultVariantTask> taskResults) {
+    public ResultVariant saveResultVariant(ResultVariant resultVariant, List<ResultVariantTask> taskResults) {
         ResultVariantEntity variantEntity = mapper.toEntity(resultVariant);
         ResultVariantEntity saved = variantRepo.save(variantEntity);
 
@@ -40,6 +40,7 @@ public class ResultRepositoryAdapter implements ResultRepositoryPort {
                 .toList();
 
         variantTaskRepo.saveAll(taskEntities);
+        return resultVariant;
     }
 
     @Override

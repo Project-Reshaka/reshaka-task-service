@@ -6,10 +6,8 @@ import ru.reshaka.taskengine.domain.port.*;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 // TODO валидация времени выполнения
@@ -30,7 +28,7 @@ public class VariantExecutionService {
         times.put(variantId, Instant.now().toEpochMilli());
     }
 
-    public void finish(Long variantId, Long userId, Map<Long, Object> answers) {
+    public ResultVariant finish(Long variantId, Long userId, Map<Long, Object> answers) {
         timer.stopTimer(variantId, userId);
         Instant end = Instant.now();
         Instant start = Instant.ofEpochMilli(times.get(variantId));
@@ -50,7 +48,7 @@ public class VariantExecutionService {
                 .totalTimeSec(Duration.between(start, end).toSeconds())
                 .build();
 
-        resultRepo.saveResultVariant(resultVariant, taskResults);
+        return resultRepo.saveResultVariant(resultVariant, taskResults);
     }
 
     private List<ResultVariantTask> validateVariant(Variant variant, Long userId, Map<Long, Object> answers) {

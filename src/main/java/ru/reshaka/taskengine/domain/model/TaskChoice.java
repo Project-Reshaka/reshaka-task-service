@@ -15,7 +15,7 @@ public class TaskChoice extends TaskBase {
     private TaskType type;
 
     @Override
-    public ValidationResult validateAnswer(Object answer) {
+    public ValidationResult validateAnswer(Object answer, Long userId) {
         if (!(answer instanceof List<?> ansList)) {
             return new ValidationResult(false);
         }

@@ -6,6 +6,6 @@ import ru.reshaka.taskengine.infra.postgre.model.TaskManualEntity;
 
 public interface ManualTaskValidatorFactory {
 
-    ManualTaskValidator createManualTaskValidator(TaskManualEntity task);
+    <T> ManualTaskValidator<T> create(TaskManualEntity task);
 
 }

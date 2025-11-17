@@ -43,9 +43,9 @@ public class TaskMapper {
         return taskInput;
     }
 
-    public TaskManual toDomain(TaskManualEntity e) {
-        ManualTaskValidator taskValidator = manualTaskValidatorFactory.createManualTaskValidator(e);
-        TaskManual taskManual = new TaskManual(taskValidator);
+    public <T> TaskManual<T> toDomain(TaskManualEntity e) {
+        ManualTaskValidator<T> taskValidator = manualTaskValidatorFactory.create(e);
+        TaskManual<T> taskManual = new TaskManual<T>(taskValidator);
         taskManual.setId(e.getId());
         taskManual.setText(e.getText());
         taskManual.setHard(e.getIsHard());

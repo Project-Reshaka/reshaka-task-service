@@ -14,7 +14,7 @@ public class SingleTaskValidationService {
 
     public ResultTask validateAndPersist(TaskBase task, Object answer, Long userId) {
 
-        boolean isCorrect = task.validateAnswer(answer).getIsCorrect();
+        boolean isCorrect = task.validateAnswer(answer,userId).getIsCorrect();
 
 
         ResultTask result = ResultTask.builder()
@@ -33,7 +33,7 @@ public class SingleTaskValidationService {
         boolean isCorrect = taskRepo
                 .findById(task.getTaskId(), task.getTaskType())
                 .orElseThrow()
-                .validateAnswer(answer).getIsCorrect();
+                .validateAnswer(answer, userId).getIsCorrect();
 
         ResultVariantTask resultVariantTask = ResultVariantTask.builder()
                 .taskId(task.getTaskId())

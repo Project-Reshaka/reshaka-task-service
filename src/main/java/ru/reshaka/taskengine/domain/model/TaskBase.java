@@ -11,7 +11,6 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public abstract class TaskBase {
     private Long id;
     private String text;
@@ -19,5 +18,5 @@ public abstract class TaskBase {
     private Instant createdAt;
     private Instant updatedAt;
 
-    public abstract ValidationResult validateAnswer(Object answer);
+    public abstract ValidationResult validateAnswer(Object answer, Long userId);
 }
