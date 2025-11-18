@@ -1,7 +1,6 @@
 package ru.reshaka.taskengine.application.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.reshaka.taskengine.application.service.*;
@@ -11,33 +10,30 @@ import ru.reshaka.taskengine.domain.service.VariantExecutionService;
 import ru.reshaka.taskengine.taskgensubsystem.DefaultTaskGenerator;
 
 @Configuration
-@RequiredArgsConstructor
 public class ApplicationServiceConfig {
 
-    private final SingleTaskValidationService singleTaskValidationService;
-
-    private final TaskRepositoryPort taskRepositoryPort;
-
-    private final TaskAnswerParser taskAnswerParser;
-
-    private final ManualAnswerReviewPort manualAnswerReviewPort;
-
-    private final VariantExecutionService variantExecutionService;
-
-    public @Bean TaskAnswerParser taskAnswerParser() {
+    @Bean
+    public TaskAnswerParser taskAnswerParser() {
         return new TaskAnswerParser(new ObjectMapper());
     }
 
-    public @Bean TaskExecutionAppService taskExecutionAppService() {
+    @Bean
+    public TaskExecutionAppService taskExecutionAppService(
+            SingleTaskValidationService singleTaskValidationService,
+            TaskRepositoryPort taskRepositoryPort,
+            TaskAnswerParser taskAnswerParser,
+            ManualAnswerReviewPort manualAnswerReviewPort) {
         return new TaskExecutionAppService(singleTaskValidationService, taskRepositoryPort, taskAnswerParser, manualAnswerReviewPort);
     }
 
-    public @Bean VariantExecutionAppService variantExecutionAppService() {
+    @Bean
+    public VariantExecutionAppService variantExecutionAppService(
+            VariantExecutionService variantExecutionService) {
         return new VariantExecutionAppService(variantExecutionService);
     }
 
-    public @Bean TaskGenerationAppService taskGenerationAppService() {
+    @Bean
+    public TaskGenerationAppService taskGenerationAppService() {
         return new TaskGenerationAppService(new DefaultTaskGenerator());
     }
-
 }
